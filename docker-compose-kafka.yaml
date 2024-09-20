@@ -1,0 +1,90 @@
+version: '3.8'
+
+services:
+  zookeeper-destination:
+    image: quay.io/debezium/zookeeper:2.1
+    environment:
+      - ZOOKEEPER_CLIENT_PORT=2181
+      - ZOOKEEPER_TICK_TIME=2000
+    ports:
+      - "2181:2181"
+      - "2888:2888"
+      - "3888:3888"
+    networks:
+      - vbo-destination
+
+  kafka-destination:
+    container_name: kafka-destination
+    image: quay.io/debezium/kafka:2.1
+    depends_on:
+      - zookeeper-destination
+    environment:
+      - ZOOKEEPER_CONNECT=zookeeper-destination:2181
+      - KAFKA_BROKER_ID=1
+      - KAFKA_ZOOKEEPER_CONNECT=zookeeper-destination:2181
+      - KAFKA_LISTENERS=INTERNAL://0.0.0.0:29092,EXTERNAL://0.0.0.0:9092
+      - KAFKA_ADVERTISED_LISTENERS=INTERNAL://kafka-destination:29092,EXTERNAL://kafka-destination:9092
+      - KAFKA_LISTENER_SECURITY_PROTOCOL_MAP=INTERNAL:PLAINTEXT,EXTERNAL:PLAINTEXT
+      - KAFKA_INTER_BROKER_LISTENER_NAME=EXTERNAL
+    networks:
+      - vbo-destination
+    labels:
+      - "traefik.enable=true"
+      - "traefik.tcp.routers.kafka.rule=HostSNI(`*`)"
+      - "traefik.tcp.routers.kafka.entrypoints=kafka"
+      - "traefik.tcp.services.kafka.loadbalancer.server.port=9092"
+
+  connect-destination:
+    container_name: connect-destination
+    image: quay.io/debezium/connect:2.1
+    ports:
+      - "8083:8083"
+    depends_on:
+      - kafka-destination
+    environment:
+      - BOOTSTRAP_SERVERS=kafka-destination:9092
+      - GROUP_ID=1
+      - CONFIG_STORAGE_TOPIC=my_connect_configs
+      - OFFSET_STORAGE_TOPIC=my_connect_offsets
+      - STATUS_STORAGE_TOPIC=my_connect_statuses
+      - CONNECT_REST_TIMEOUT_MS=20000
+    networks:
+      - vbo-destination
+
+  kafdrop-destination:
+    image: obsidiandynamics/kafdrop:3.27.0
+    labels:
+      - "traefik.enable=true"
+      - "traefik.http.routers.kafdrop.rule=Host(`backend1.localhost`)"
+      - "traefik.http.routers.kafdrop.entrypoints=kafdrop"
+#      - "traefik.http.routers.kafdrop.middlewares=auth"
+      - "traefik.http.services.kafdrop.loadbalancer.server.port=9000"
+    environment:
+      - KAFKA_BROKERCONNECT=kafka-destination:9092
+    depends_on:
+      - kafka-destination
+#    ports:
+#      - "9002:9000"
+    networks:
+      - vbo-destination
+
+  traefik:
+    image: traefik:v2.5
+    container_name: traefik
+    ports:
+      - "80:80"     # Port HTTP
+      - "8082:8080"   # Port HTTPS pour les connexions sécurisées
+      - "9092:9092" # Port Kafka pour l'accès externe via Traefik
+      - "9002:9002"
+    networks:
+      - vbo-destination
+    volumes:
+      - "/var/run/docker.sock:/var/run/docker.sock"
+      - "./traefik.yml:/etc/traefik/traefik.yml"
+#      - "./letsencrypt:/letsencrypt" # Volume pour stocker les certificats SSL
+    restart: always
+
+networks:
+  vbo-destination:
+    external: true
+

@@ -1,0 +1,29 @@
+# traefik.yml
+entryPoints:
+  http:
+    address: ":80"
+  https:
+    address: ":443"
+  kafka:
+    address: ":9092" # Port TCP pour Kafka
+  kafdrop:
+    address: ":9002"
+providers:
+  docker:
+    exposedByDefault: false
+
+#certificatesResolvers:
+#  http:
+#    acme:
+#      httpChallenge:
+#        entryPoint: http
+#      storage: /letsencrypt/acme.json
+
+#middlewares:
+#  auth:
+#    basicAuth:
+#      users:
+#        - "admin:$apr1$vRxRLGBb$f9Aw.9y/znobeCM41NYQV1" 
+
+api:
+  insecure: true
