@@ -90,5 +90,7 @@ networks:
 #wget https://archive.apache.org/dist/flink/flink-1.18.1/flink-1.18.1-bin-scala_2.12.tgz
 #kafka-topics --list --bootstrap-server kafka.lesableblanc-manambato.mg:9092
 #/kafka/bin/kafka-topics.sh --list --bootstrap-server kafka.lesableblanc-manambato.mg:9092
+#KAFKA_HEAP_OPTS="-Xmx1G -Xms1G"
+
 
 
