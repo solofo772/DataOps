@@ -89,3 +89,6 @@ networks:
     external: true
 #wget https://archive.apache.org/dist/flink/flink-1.18.1/flink-1.18.1-bin-scala_2.12.tgz
 #kafka-topics --list --bootstrap-server kafka.lesableblanc-manambato.mg:9092
+#[kafka@7d41ecaaf190 bin]$ /kafka/kafka-topics --list --bootstrap-server kafka.lesableblanc-manambato.mg:9092
+#bash: /kafka/kafka-topics: No such file or directory
+
