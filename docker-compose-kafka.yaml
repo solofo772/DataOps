@@ -92,7 +92,9 @@ networks:
 #/kafka/bin/kafka-topics.sh --list --bootstrap-server kafka.lesableblanc-manambato.mg:9092
 #KAFKA_HEAP_OPTS="-Xmx1G -Xms1G"
 #export KAFKA_HEAP_OPTS="-Xmx1G -Xms1G"
-
+#idea@idea:~/Documents/DataOps/flink-1.18.1$ ./bin/start-cluster.sh 
+#Please specify JAVA_HOME. Either in Flink config ./conf/flink-conf.yaml or as system-wide JAVA_HOME.
+#idea@idea:~/Documents/DataOps/flink-1.18.1$ 
 
 
 
