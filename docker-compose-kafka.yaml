@@ -55,7 +55,7 @@ services:
     image: obsidiandynamics/kafdrop:3.27.0
     labels:
       - "traefik.enable=true"
-      - "traefik.http.routers.kafdrop.rule=Host(`backend1.localhost`)"
+      - "traefik.http.routers.kafdrop.rule=Host(`*`)"
       - "traefik.http.routers.kafdrop.entrypoints=kafdrop"
 #      - "traefik.http.routers.kafdrop.middlewares=auth"
       - "traefik.http.services.kafdrop.loadbalancer.server.port=9000"
