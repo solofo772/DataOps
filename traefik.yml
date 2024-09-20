@@ -13,11 +13,12 @@ providers:
     exposedByDefault: false
 
 #certificatesResolvers:
-#  http:
+#  letsencrypt:
 #    acme:
+#      email: votremail@example.com  # Remplacez par votre adresse email
+#      storage: /letsencrypt/acme.json
 #      httpChallenge:
 #        entryPoint: http
-#      storage: /letsencrypt/acme.json
 
 #middlewares:
 #  auth:
