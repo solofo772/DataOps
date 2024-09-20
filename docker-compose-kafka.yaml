@@ -91,6 +91,8 @@ networks:
 #kafka-topics --list --bootstrap-server kafka.lesableblanc-manambato.mg:9092
 #/kafka/bin/kafka-topics.sh --list --bootstrap-server kafka.lesableblanc-manambato.mg:9092
 #KAFKA_HEAP_OPTS="-Xmx1G -Xms1G"
+#export KAFKA_HEAP_OPTS="-Xmx1G -Xms1G"
+
 
 
 
