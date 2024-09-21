@@ -1,0 +1,42 @@
+mise en place d'un VPN:
+
+VPN signifie Virtual Private Network, que l'on peut traduire 
+en français: réseau privé virtuel, ce qui nous donne RPV.
+L'objectif c'est de créer un lien virtuel entre deux points,
+par exemple entre deux réseaux d'entreprise ou un PC client et 
+un réseau d'entreprise.
+Ce lien est appelé un tunnel VPN, les données sont chiffrées et 
+isolées, permet aussi de créer une extension virtuelle d'un réseau.
+
+Il y a différents types de VPN dont: Split-tunnel qui est un tunnel
+divisé donc tout le trafic réseau de la machine connecté au VPN 
+ne passe pas par le VPN. Pour accèder au serveur de fichier, 
+on passe par le VPN mais pas pour Internet. Full-tunnel, qui est 
+un VPN en mode full tunnel complet,c'est-à-dire que tout le trafic réseau 
+de la machine connecté au VPN passe par le tunnem VPN.
+
+VPN on des principaux protocoles qui est le protocole PPTP (Point-to-Point Tunneling Protocol) est une méthode historique pour
+mettre en place tunnel VPN. Contient des failles de sécurité : obsolète aujourd'hui. Les protocoles L2TP/Ipsec
+Conçu par Microsoft, le protocole L2TP pour Layer 2 Tunneling Protocol, s'appuie sur
+IPsec (Internet Protocol Security) pour fonctionner. Sécurisé mais plut lent qu'OpenVPN. Les protocoles IKEv2 / IPsec
+- Le protocole IPsec est également associé à un autre
+protocole que vous êtes susceptible de rencontrer : IKEv2
+(Internet Key Exchange version 2). Plus récent que L2TP.
+- Authentification mutuelle entre les deux hôtes (notamment
+avec une clé partagée), et connexion établie en deux phases.
+Le protocole OpenVPN qui domine me marché des VPN, et il est souvent associé à la notion de "VPN SSL". Protocole open source compatibles avec de nombreux équipements !
+
+Parmis ses protocole nous avons choisie OpenVPN car il utilise SSL/TLS pour le chiffrement et peut utiliser des algorithmes de chiffrement forts tels que AES-256.
+Il offre des options supplémentaires de sécurité telles que l'authentification à deux facteurs et les certificats numériques pour une sécurité renforcée
+
+deploiement d'OpenVPN avec docker compose:
+Utilisation d'un images docker OpenVPn pour facliter sa configuration ainsi que son déploiment.
+commande docker compose necéssaire pendant la configuration de OpenVPN serveur:
+docker-compose run --rm openvpn-server ovpn_genconfig -u udp://IP_PUBLIQUE_DE_VOTRE_HOTE
+docker-compose run --rm openvpn-server ovpn_initpki
+docker-compose run --rm openvpn-server easyrsa build-client-full client
+docker-compose run --rm openvpn-server ovpn_getclient client > /home/oliver1/Documents/ovpn-data/client.ovpn
+docker-compose up -d
+
+comparaison par rapport L2TP/IPsec:
+

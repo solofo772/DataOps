@@ -1,0 +1,50 @@
+#version: '3'
+
+#services:
+#  openvpn-server:
+#    image: kylemanna/openvpn
+#    container_name: openvpn-server
+#    ports:
+#    - "1195:1194/udp"
+#    volumes:
+#    - ./ovpn-data:/etc/openvpn
+#    restart: always
+#    cap_add:
+#    - NET_ADMIN
+version: '3'
+
+services:
+  openvpn-server:
+    image: kylemanna/openvpn
+    container_name: openvpn-server
+    ports:
+      - "1195:1194/udp"
+      - "2080:2080/tcp"
+    volumes:
+      - ./ovpn-data:/etc/openvpn
+    restart: always
+    cap_add:
+      - NET_ADMIN
+    command: ["ovpn_run"]
+    networks:
+      - vpn-net
+
+  openvpn-ui:
+    image: awalach/openvpn-web-ui
+    container_name: openvpn-ui
+    ports:
+      - "8081:8080"
+    volumes:
+      - ./ovpn-data:/etc/openvpn
+    depends_on:
+      - openvpn-server
+    restart: always
+    environment:
+      - OPENVPN_SERVER_IP=openvpn-server
+    networks:
+      - vpn-net
+
+networks:
+  vpn-net:
+
+

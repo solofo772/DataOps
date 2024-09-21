@@ -1,0 +1,9 @@
+mise en place d'un réseau VPN:
+
+VPN signifie Virtual Private Network, que l'on peut traduire 
+en français: réseau privé virtuel, ce qui nous donne RPV.
+L'objectif c'est de créer un lien virtuel entre deux points,
+par exemple entre deux réseaux d'entreprise ou un PC client et 
+un réseau d'entreprise. Ce lien est appelé un tunnel VPN, 
+les données sont chiffrées et isolées, permet de créer 
+une extension virtuell
