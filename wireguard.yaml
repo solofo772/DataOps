@@ -42,3 +42,5 @@ services:
     ipam:
       config:
         - subnet: 10.8.0.0/24
+#idea@idea:~/Documents/DataOps/WireGuard$ sudo docker-compose up
+#validating /home/idea/Documents/DataOps/WireGuard/docker-compose.yml: services.wg_network Additional property external is not allowed
