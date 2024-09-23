@@ -28,8 +28,40 @@ providers:
 
 api:
   insecure: true
-sudo lsof -i :80
-sudo lsof -i :443
+idea@idea:~/Documents/DataOps/traefik$ sudo docker compose up
+WARN[0000] /home/idea/Documents/DataOps/traefik/docker-compose.yml: the attribute `version` is obsolete, it will be ignored, please remove it to avoid potential confusion 
+[+] Running 1/0
+ ✔ Container dockersocket  Running                                                                                                   0.0s 
+Attaching to dockersocket, traefik
+Gracefully stopping... (press Ctrl+C again to force)
+Error response from daemon: driver failed programming external connectivity on endpoint traefik (c4a42824fa15a1c9e8738c1a7fa6e089e9e762b3986bfc4aead2de8854374677): Bind for 0.0.0.0:80 failed: port is already allocated
+idea@idea:~/Documents/DataOps/traefik$ netstat -tunl
+Connexions Internet actives (seulement serveurs)
+Proto Recv-Q Send-Q Adresse locale          Adresse distante        Etat       
+tcp        0      0 0.0.0.0:9092            0.0.0.0:*               LISTEN     
+tcp        0      0 127.0.0.1:631           0.0.0.0:*               LISTEN     
+tcp        0      0 0.0.0.0:3888            0.0.0.0:*               LISTEN     
+tcp        0      0 0.0.0.0:2888            0.0.0.0:*               LISTEN     
+tcp        0      0 0.0.0.0:2181            0.0.0.0:*               LISTEN     
+tcp        0      0 0.0.0.0:22              0.0.0.0:*               LISTEN     
+tcp        0      0 0.0.0.0:8080            0.0.0.0:*               LISTEN     
+tcp        0      0 0.0.0.0:8083            0.0.0.0:*               LISTEN     
+tcp6       0      0 ::1:631                 :::*                    LISTEN     
+tcp6       0      0 :::9092                 :::*                    LISTEN     
+tcp6       0      0 :::3888                 :::*                    LISTEN     
+tcp6       0      0 :::2888                 :::*                    LISTEN     
+tcp6       0      0 :::2181                 :::*                    LISTEN     
+tcp6       0      0 :::22                   :::*                    LISTEN     
+tcp6       0      0 :::8080                 :::*                    LISTEN     
+tcp6       0      0 :::8083                 :::*                    LISTEN     
+udp        0      0 0.0.0.0:631             0.0.0.0:*                          
+udp        0      0 0.0.0.0:5353            0.0.0.0:*                          
+udp        0      0 0.0.0.0:55732           0.0.0.0:*                          
+udp6       0      0 fe80::2e0:4cff:fe80:546 :::*                               
+udp6       0      0 :::51469                :::*                               
+udp6       0      0 :::5353                 :::*                               
+idea@idea:~/Documents/DataOps/traefik$ 
+
 
 
 
