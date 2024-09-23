@@ -42,10 +42,8 @@ services:
     ipam:
       config:
         - subnet: 10.8.0.0/24
-idea@idea:~/Documents/DataOps/WireGuard$ sudo docker compose up
+idea@idea:~/Documents/DataOps/WireGuard$ sudo docker compose up wg-easy
 WARN[0000] /home/idea/Documents/DataOps/WireGuard/docker-compose.yml: the attribute `version` is obsolete, it will be ignored, please remove it to avoid potential confusion 
-[+] Running 0/2
- ⠋ Container wg-easy  Creating                                                                                                                  0.0s 
- ⠋ Container dnsmasq  Creating                                                                                                                  0.0s 
-Error response from daemon: invalid config for network 4b6a15d03c4dc0e565ac93683dd92821a576d22e6a3a8559df631c43a4b3ddca: invalid endpoint settings:
-no configured subnet or ip-range contain the IP address 10.8.0.1
+Attaching to wg-easy
+Gracefully stopping... (press Ctrl+C again to force)
+Error response from daemon: Address already in use
