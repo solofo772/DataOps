@@ -28,3 +28,27 @@ providers:
 
 api:
   insecure: true
+
+
+
+  ea@idea:~/Documents/DataOps/traefik$ netstat -tunl
+Connexions Internet actives (seulement serveurs)
+Proto Recv-Q Send-Q Adresse locale          Adresse distante        Etat       
+tcp        0      0 0.0.0.0:9092            0.0.0.0:*               LISTEN     
+tcp        0      0 127.0.0.1:631           0.0.0.0:*               LISTEN     
+tcp        0      0 0.0.0.0:3888            0.0.0.0:*               LISTEN     
+tcp        0      0 0.0.0.0:2888            0.0.0.0:*               LISTEN     
+tcp        0      0 0.0.0.0:2181            0.0.0.0:*               LISTEN     
+tcp        0      0 0.0.0.0:80              0.0.0.0:*               LISTEN     
+tcp        0      0 0.0.0.0:22              0.0.0.0:*               LISTEN     
+tcp        0      0 0.0.0.0:443             0.0.0.0:*               LISTEN     
+tcp        0      0 0.0.0.0:8080            0.0.0.0:*               LISTEN     
+tcp        0      0 0.0.0.0:8083            0.0.0.0:*               LISTEN     
+tcp6       0      0 ::1:631                 :::*                    LISTEN     
+tcp6       0      0 :::9092                 :::*                    LISTEN     
+tcp6       0      0 :::3888                 :::*                    LISTEN     
+tcp6       0      0 :::2888                 :::*                    LISTEN     
+tcp6       0      0 :::2181                 :::*                    LISTEN     
+tcp6       0      0 :::80                   :::*                    LISTEN     
+tcp6       0      0 :::22                   :::*                    LISTEN     
+tcp6       0      0 :::443
