@@ -42,13 +42,13 @@ services:
     ipam:
       config:
         - subnet: 10.8.0.0/24
-[kafka@283b58d18e69 ~]$ /kafka/bin/kafka-topics.sh --list --bootstrap-server 154.120.150.40:9092
-[2024-09-23 21:32:12,311] WARN [AdminClient clientId=adminclient-1] Connection to node -1 (/154.120.150.40:9092) could not be established. Broker may not be available. (org.apache.kafka.clients.NetworkClient)
-[2024-09-23 21:32:12,416] WARN [AdminClient clientId=adminclient-1] Connection to node -1 (/154.120.150.40:9092) could not be established. Broker may not be available. (org.apache.kafka.clients.NetworkClient)
-[2024-09-23 21:32:12,519] WARN [AdminClient clientId=adminclient-1] Connection to node -1 (/154.120.150.40:9092) could not be established. Broker may not be available. (org.apache.kafka.clients.NetworkClient)
-[2024-09-23 21:32:12,723] WARN [AdminClient clientId=adminclient-1] Connection to node -1 (/154.120.150.40:9092) could not be established. Broker may not be available. (org.apache.kafka.clients.NetworkClient)
-[2024-09-23 21:32:13,229] WARN [AdminClient clientId=adminclient-1] Connection to node -1 (/154.120.150.40:9092) could not be established. Broker may not be available. (org.apache.kafka.clients.NetworkClient)
-[2024-09-23 21:32:13,936] WARN [AdminClient clientId=adminclient-1] Connection to node -1 (/154.120.150.40:9092) could not be established. Broker may not be available. (org.apache.kafka.clients.NetworkClient)
-[2024-09-23 21:32:15,145] WARN [AdminClient clientId=adminclient-1] Connection to node -1 (/154.120.150.40:9092) could not be established. Broker may not be available. (org.apache.kafka.clients.NetworkClient)
-^C[kafka@283b58d18e69 ~]$ 
+idea@idea:~/Documents/DataOps/WireGuard$ sudo docker compose up
+WARN[0000] /home/idea/Documents/DataOps/WireGuard/docker-compose.yml: the attribute `version` is obsolete, it will be ignored, please remove it to avoid potential confusion 
+[+] Running 0/0
+ ⠋ Container wg-easy  Recreate                                                                                                                  0.0s 
+ ⠋ Container dnsmasq  Recreate                                                                                                                  0.0s 
+Error response from daemon: invalid config for network wireguard_wg_network: invalid endpoint settings:
+no configured subnet or ip-range contain the IP address 10.20.0.2
+
+
 
